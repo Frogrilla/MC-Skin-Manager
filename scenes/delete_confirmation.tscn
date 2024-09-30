@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1yvpu01finxj"]
+
+[ext_resource type="Theme" uid="uid://b1ab176jdsq1e" path="res://themes/window_theme.tres" id="1_gllr4"]
+[ext_resource type="Script" path="res://scripts/SkinDeleter.gd" id="1_yyafk"]
+
+[node name="DeleteConfirmation" type="ConfirmationDialog" groups=["window"]]
+initial_position = 1
+size = Vector2i(300, 100)
+visible = true
+theme = ExtResource("1_gllr4")
+ok_button_text = "Delete"
+dialog_text = "Delete this skin?"
+script = ExtResource("1_yyafk")

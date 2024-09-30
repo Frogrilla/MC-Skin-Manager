@@ -1,0 +1,580 @@
+[gd_scene load_steps=16 format=3 uid="uid://25n2ub65gtjo"]
+
+[ext_resource type="Script" path="res://scripts/skin_editor.gd" id="1_mgwfj"]
+[ext_resource type="Texture2D" uid="uid://dfct4svdji18k" path="res://images/icon.svg" id="1_vwpau"]
+[ext_resource type="Theme" uid="uid://b1ab176jdsq1e" path="res://themes/window_theme.tres" id="1_ygl7c"]
+[ext_resource type="Texture2D" uid="uid://c5eby3rob5an5" path="res://images/blank_skin_model.png" id="2_wfv7m"]
+[ext_resource type="Texture2D" uid="uid://0kmcvjp0313a" path="res://images/upload arrow.svg" id="3_oio44"]
+[ext_resource type="PackedScene" uid="uid://chhn0sorkn1mn" path="res://scenes/player_model.tscn" id="4_ycha4"]
+[ext_resource type="Texture2D" uid="uid://bivla81f7bhc" path="res://images/parts/dark.png" id="5_pqdmn"]
+[ext_resource type="Texture2D" uid="uid://ru4fosgamrvj" path="res://images/parts/white_square.png" id="6_jsdjd"]
+[ext_resource type="Texture2D" uid="uid://bqgmmnqmchr0l" path="res://images/parts/head_hide.png" id="7_y7hti"]
+[ext_resource type="Texture2D" uid="uid://cjxmde5ybmu01" path="res://images/parts/head_show.png" id="8_ruw3x"]
+[ext_resource type="Texture2D" uid="uid://geb1ujuulr0j" path="res://images/parts/body_hide.png" id="9_u3p0m"]
+[ext_resource type="Texture2D" uid="uid://cqqabnkwkavaq" path="res://images/parts/body_show.png" id="10_fyldh"]
+[ext_resource type="Texture2D" uid="uid://b3c43bry6844i" path="res://images/parts/limb_hide.png" id="11_di05i"]
+[ext_resource type="Texture2D" uid="uid://d2viibq6e3p1" path="res://images/parts/limb_show.png" id="12_f1y8x"]
+[ext_resource type="Theme" uid="uid://cujwxpvp1qx1n" path="res://themes/mcsm.tres" id="15_7yaba"]
+
+[node name="SkinEditor" type="Window" node_paths=PackedStringArray("model_image", "skin_image", "skin_name", "cape_selector", "slim_button", "fov_picker", "part_hiders", "pose_picker", "player_pivot", "player_model", "camera_pivot", "camera") groups=["editor", "window"]]
+title = "Skin Editor"
+initial_position = 2
+size = Vector2i(700, 500)
+unresizable = true
+theme = ExtResource("1_ygl7c")
+script = ExtResource("1_mgwfj")
+model_image = NodePath("VBoxContainer/TabContainer/Model Image/Model Image")
+skin_image = NodePath("VBoxContainer/TabContainer/Skin/Skin Image")
+skin_name = NodePath("VBoxContainer/Control/NameEdit")
+cape_selector = NodePath("VBoxContainer/Control/CapeSelection")
+slim_button = NodePath("VBoxContainer/Control/SlimButton")
+fov_picker = NodePath("VBoxContainer/TabContainer/3D Model/VBoxContainer3/HBoxContainer/FOV")
+part_hiders = [NodePath("VBoxContainer/TabContainer/3D Model/Base/head"), NodePath("VBoxContainer/TabContainer/3D Model/Base/body"), NodePath("VBoxContainer/TabContainer/3D Model/Base/right_arm"), NodePath("VBoxContainer/TabContainer/3D Model/Base/left_arm"), NodePath("VBoxContainer/TabContainer/3D Model/Base/right_leg"), NodePath("VBoxContainer/TabContainer/3D Model/Base/left_leg"), NodePath("VBoxContainer/TabContainer/3D Model/Layer/head_layer"), NodePath("VBoxContainer/TabContainer/3D Model/Layer/body_layer"), NodePath("VBoxContainer/TabContainer/3D Model/Layer/right_arm_layer"), NodePath("VBoxContainer/TabContainer/3D Model/Layer/left_arm_layer"), NodePath("VBoxContainer/TabContainer/3D Model/Layer/right_leg_layer"), NodePath("VBoxContainer/TabContainer/3D Model/Layer/left_leg_layer"), NodePath("VBoxContainer/TabContainer/3D Model/cape")]
+pose_picker = NodePath("VBoxContainer/TabContainer/3D Model/VBoxContainer/PoseSelection")
+player_pivot = NodePath("VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport/PlayerPivot")
+player_model = NodePath("VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport/PlayerPivot/PlayerModel")
+camera_pivot = NodePath("VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport/Pivot")
+camera = NodePath("VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport/Pivot/Camera3D")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("15_7yaba")
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("15_7yaba")
+
+[node name="Model Image" type="Control" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+theme = ExtResource("1_ygl7c")
+
+[node name="Model Image" type="TextureRect" parent="VBoxContainer/TabContainer/Model Image"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -192.0
+offset_right = 144.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("2_wfv7m")
+stretch_mode = 5
+
+[node name="UploadModel" type="Button" parent="VBoxContainer/TabContainer/Model Image"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 100.0
+grow_vertical = 0
+theme = ExtResource("15_7yaba")
+text = "Model"
+icon = ExtResource("3_oio44")
+expand_icon = true
+
+[node name="Skin" type="Control" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_ygl7c")
+
+[node name="Skin Image" type="TextureRect" parent="VBoxContainer/TabContainer/Skin"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("1_vwpau")
+stretch_mode = 5
+
+[node name="UploadSkin" type="Button" parent="VBoxContainer/TabContainer/Skin"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 100.0
+grow_vertical = 0
+theme = ExtResource("15_7yaba")
+text = "Skin"
+icon = ExtResource("3_oio44")
+expand_icon = true
+
+[node name="3D Model" type="Control" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/TabContainer/3D Model"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -192.0
+offset_right = 144.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("15_7yaba")
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/TabContainer/3D Model/SubViewportContainer"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(288, 384)
+render_target_update_mode = 0
+
+[node name="Pivot" type="Node3D" parent="VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport/Pivot"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, -4)
+fov = 40.0
+size = 2.75
+
+[node name="PlayerPivot" type="Node3D" parent="VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport"]
+
+[node name="PlayerModel" parent="VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport/PlayerPivot" instance=ExtResource("4_ycha4")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D Model"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -164.0
+offset_bottom = 66.0
+grow_horizontal = 0
+
+[node name="CreateModel" type="Button" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+text = "Create Model Image"
+
+[node name="PoseSelection" type="OptionButton" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("15_7yaba")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D Model"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+offset_right = 328.0
+grow_vertical = 0
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(0, 215)
+
+[node name="Transform" type="GridContainer" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2"]
+layout_mode = 2
+columns = 4
+
+[node name="Position" type="Label" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+text = "Position"
+
+[node name="PosX" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+min_value = -2.0
+max_value = 2.0
+step = 0.01
+
+[node name="PosY" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+min_value = -2.0
+max_value = 2.0
+step = 0.01
+
+[node name="PosZ" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+min_value = -2.0
+max_value = 2.0
+step = 0.01
+
+[node name="Rotation" type="Label" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+text = "Rotation"
+
+[node name="RotX" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+min_value = -180.0
+max_value = 180.0
+
+[node name="RotY" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+min_value = -180.0
+max_value = 180.0
+
+[node name="RotZ" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+min_value = -180.0
+max_value = 180.0
+
+[node name="Scale" type="Label" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+text = "Scale
+"
+
+[node name="ScaleX" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="ScaleY" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="ScaleZ" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D Model"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -174.0
+offset_top = -66.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(167, 60)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer3"]
+layout_mode = 2
+size_flags_stretch_ratio = 9.3
+
+[node name="FOV" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+max_value = 90.0
+value = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+text = "FOV"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer3"]
+layout_mode = 2
+size_flags_stretch_ratio = 9.3
+
+[node name="CapeAngle" type="SpinBox" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer3/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+min_value = -180.0
+max_value = 180.0
+value = -10.0
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/3D Model/VBoxContainer3/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("15_7yaba")
+text = "Cape Angle"
+
+[node name="Base" type="Control" parent="VBoxContainer/TabContainer/3D Model"]
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 30.0
+offset_bottom = 20.0
+scale = Vector2(3, 3)
+
+[node name="head" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Base"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("5_pqdmn")
+texture_pressed = ExtResource("6_jsdjd")
+
+[node name="body" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Base"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 16.0
+scale = Vector2(1, 1.5)
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("5_pqdmn")
+texture_pressed = ExtResource("6_jsdjd")
+
+[node name="right_arm" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Base"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -4.0
+offset_top = 8.0
+offset_right = 4.0
+offset_bottom = 16.0
+scale = Vector2(0.5, 1.5)
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("5_pqdmn")
+texture_pressed = ExtResource("6_jsdjd")
+
+[node name="left_arm" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Base"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(0.5, 1.5)
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("5_pqdmn")
+texture_pressed = ExtResource("6_jsdjd")
+
+[node name="right_leg" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Base"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 20.0
+offset_right = 8.0
+offset_bottom = 28.0
+scale = Vector2(0.5, 1.5)
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("5_pqdmn")
+texture_pressed = ExtResource("6_jsdjd")
+
+[node name="left_leg" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Base"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 12.0
+offset_bottom = 28.0
+scale = Vector2(0.5, 1.5)
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("5_pqdmn")
+texture_pressed = ExtResource("6_jsdjd")
+
+[node name="Layer" type="Control" parent="VBoxContainer/TabContainer/3D Model"]
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 130.0
+offset_right = 30.0
+offset_bottom = 130.0
+scale = Vector2(3, 3)
+
+[node name="head_layer" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Layer"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("7_y7hti")
+texture_pressed = ExtResource("8_ruw3x")
+
+[node name="body_layer" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Layer"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 20.0
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("9_u3p0m")
+texture_pressed = ExtResource("10_fyldh")
+
+[node name="right_arm_layer" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Layer"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -4.0
+offset_top = 8.0
+offset_bottom = 20.0
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("11_di05i")
+texture_pressed = ExtResource("12_f1y8x")
+
+[node name="left_arm_layer" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Layer"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 12.0
+offset_bottom = 20.0
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("11_di05i")
+texture_pressed = ExtResource("12_f1y8x")
+
+[node name="right_leg_layer" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Layer"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 20.0
+offset_right = 4.0
+offset_bottom = 32.0
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("11_di05i")
+texture_pressed = ExtResource("12_f1y8x")
+
+[node name="left_leg_layer" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model/Layer"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 8.0
+offset_bottom = 32.0
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("11_di05i")
+texture_pressed = ExtResource("12_f1y8x")
+
+[node name="cape" type="TextureButton" parent="VBoxContainer/TabContainer/3D Model"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 88.0
+offset_bottom = 48.0
+scale = Vector2(3.75, 6)
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("5_pqdmn")
+texture_pressed = ExtResource("6_jsdjd")
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="CapeSelection" type="OptionButton" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -16.5
+offset_right = 220.0
+offset_bottom = 16.5
+grow_vertical = 2
+size_flags_stretch_ratio = 0.4
+theme = ExtResource("15_7yaba")
+text_overrun_behavior = 3
+fit_to_longest_item = false
+
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/Control"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -16.5
+offset_right = 125.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 1.2
+theme = ExtResource("15_7yaba")
+placeholder_text = "<unnamed skin>"
+
+[node name="SlimButton" type="CheckBox" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -16.5
+offset_right = -157.0
+offset_bottom = 16.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("15_7yaba")
+text = "slim"
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -16.5
+offset_right = -10.0
+offset_bottom = 16.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("15_7yaba")
+text = "Save"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Model Image/UploadModel" to="." method="_on_upload_model_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Skin/UploadSkin" to="." method="_on_upload_skin_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer/CreateModel" to="." method="model_image_from_camera"]
+[connection signal="item_selected" from="VBoxContainer/TabContainer/3D Model/VBoxContainer/PoseSelection" to="." method="_on_pose_selection"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform/PosX" to="." method="set_pos_x"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform/PosY" to="." method="set_pos_y"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform/PosZ" to="." method="set_pos_z"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform/RotX" to="." method="set_rot_x"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform/RotY" to="." method="set_rot_y"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform/RotZ" to="." method="set_rot_z"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform/ScaleX" to="." method="set_scale_x"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform/ScaleY" to="." method="set_scale_y"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer2/Transform/ScaleZ" to="." method="set_scale_z"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer3/HBoxContainer/FOV" to="." method="set_fov"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/3D Model/VBoxContainer3/HBoxContainer2/CapeAngle" to="." method="set_cape_angle"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Base/head" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Base/body" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Base/right_arm" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Base/left_arm" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Base/right_leg" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Base/left_leg" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Layer/head_layer" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Layer/body_layer" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Layer/right_arm_layer" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Layer/left_arm_layer" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Layer/right_leg_layer" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/Layer/left_leg_layer" to="." method="change_part_visibility"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/3D Model/cape" to="." method="change_part_visibility"]
+[connection signal="item_selected" from="VBoxContainer/Control/CapeSelection" to="." method="_on_cape_selected"]
+[connection signal="text_changed" from="VBoxContainer/Control/NameEdit" to="." method="_on_name_changed"]
+[connection signal="toggled" from="VBoxContainer/Control/SlimButton" to="." method="_on_slim_toggled"]
+[connection signal="pressed" from="VBoxContainer/Control/SaveButton" to="." method="_on_save_button"]

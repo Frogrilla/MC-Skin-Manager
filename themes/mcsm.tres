@@ -1,0 +1,67 @@
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://cujwxpvp1qx1n"]
+
+[ext_resource type="StyleBox" uid="uid://cmns6051205yn" path="res://themes/dark_style_box.tres" id="1_fudjt"]
+[ext_resource type="StyleBox" uid="uid://bmclujudrmf3x" path="res://themes/grey_style_box.tres" id="1_iader"]
+[ext_resource type="StyleBox" uid="uid://3vxsnapavdey" path="res://themes/button_normal.tres" id="1_ml6d7"]
+[ext_resource type="StyleBox" uid="uid://dxf65avyckgi7" path="res://themes/dark_grey_style_box.tres" id="2_ji2b0"]
+[ext_resource type="StyleBox" uid="uid://swdgm7k6ew31" path="res://themes/button_hovered.tres" id="2_voi3l"]
+[ext_resource type="StyleBox" uid="uid://5fdv7eapb60r" path="res://themes/button_pressed.tres" id="3_cbxay"]
+[ext_resource type="StyleBox" uid="uid://bfeikd6lmrpdx" path="res://themes/green_style_box.tres" id="3_lcsgt"]
+[ext_resource type="StyleBox" uid="uid://bihgw4jb5fbir" path="res://themes/light_grey_style_box.tres" id="8_mnurq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2glx1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kg03r"]
+bg_color = Color(0, 0.521569, 0.258824, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qkcy2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pmi0s"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_id68t"]
+color = Color(0, 0.521569, 0.258824, 1)
+
+[resource]
+Button/styles/disabled = ExtResource("1_fudjt")
+Button/styles/focus = SubResource("StyleBoxEmpty_2glx1")
+Button/styles/hover = ExtResource("2_ji2b0")
+Button/styles/normal = ExtResource("1_fudjt")
+Button/styles/pressed = ExtResource("3_lcsgt")
+CheckBox/styles/hover_pressed = ExtResource("3_lcsgt")
+CheckButton/styles/hover_pressed = ExtResource("3_lcsgt")
+Label/styles/normal = SubResource("StyleBoxFlat_kg03r")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_qkcy2")
+LineEdit/styles/normal = ExtResource("1_fudjt")
+MenuBar/colors/font_pressed_color = Color(0, 0.521569, 0.258824, 1)
+MenuBar/constants/h_separation = 10
+MenuBar/styles/focus = SubResource("StyleBoxEmpty_pmi0s")
+MenuBar/styles/hover = ExtResource("2_voi3l")
+MenuBar/styles/normal = ExtResource("1_ml6d7")
+MenuBar/styles/pressed = ExtResource("3_cbxay")
+Panel/styles/panel = ExtResource("1_iader")
+PopupMenu/styles/hover = ExtResource("3_lcsgt")
+PopupMenu/styles/panel = ExtResource("1_fudjt")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_id68t")
+TabContainer/colors/font_selected_color = Color(0.00390625, 0.519531, 0.257813, 1)
+TabContainer/constants/side_margin = 0
+TabContainer/styles/panel = ExtResource("1_iader")
+TabContainer/styles/tab_hovered = ExtResource("2_voi3l")
+TabContainer/styles/tab_selected = ExtResource("3_cbxay")
+TabContainer/styles/tab_unselected = ExtResource("1_ml6d7")
+TabContainer/styles/tabbar_background = ExtResource("1_fudjt")
+TooltipLabel/base_type = &"Label"
+TooltipLabel/styles/normal = ExtResource("1_fudjt")
+VScrollBar/styles/grabber = ExtResource("8_mnurq")
+VScrollBar/styles/grabber_highlight = ExtResource("3_lcsgt")
+VScrollBar/styles/grabber_pressed = ExtResource("3_lcsgt")
+Window/colors/title_color = Color(0, 0, 0, 1)
+Window/colors/title_outline_modulate = Color(0, 0, 0, 1)
+Window/constants/close_h_offset = 0
+Window/constants/close_v_offset = 0
+Window/constants/resize_margin = 0
+Window/constants/title_height = 0
+Window/constants/title_outline_size = 0
+Window/font_sizes/title_font_size = 16
+Window/fonts/title_font = null
+Window/icons/close = null
+Window/icons/close_pressed = null

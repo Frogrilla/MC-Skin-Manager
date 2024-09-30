@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyf2j71l4wbur"]
+
+[ext_resource type="Script" path="res://scripts/cape_creator.gd" id="1_l4fv5"]
+[ext_resource type="Theme" uid="uid://b1ab176jdsq1e" path="res://themes/window_theme.tres" id="1_s3pee"]
+[ext_resource type="Texture2D" uid="uid://bb5c4b78bg2sj" path="res://cape_textures/fallback.png" id="2_bwada"]
+[ext_resource type="Texture2D" uid="uid://0kmcvjp0313a" path="res://images/upload arrow.svg" id="3_e46hy"]
+[ext_resource type="Theme" uid="uid://cujwxpvp1qx1n" path="res://themes/mcsm.tres" id="3_gmomm"]
+
+[node name="CapeCreator" type="Window" node_paths=PackedStringArray("cape_image", "cape_name", "cape_id") groups=["window"]]
+title = "Cape Creation"
+initial_position = 2
+size = Vector2i(700, 500)
+unresizable = true
+theme = ExtResource("1_s3pee")
+script = ExtResource("1_l4fv5")
+cape_image = NodePath("Panel/TextureRect")
+cape_name = NodePath("HBoxContainer/VBoxContainer/NameEdit")
+cape_id = NodePath("HBoxContainer/VBoxContainer/IdEdit")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -325.0
+offset_top = -70.0
+offset_right = 325.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_gmomm")
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IdEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_gmomm")
+placeholder_text = "<cape id>"
+
+[node name="NameEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_gmomm")
+placeholder_text = "<unnamed cape>"
+
+[node name="AddButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_gmomm")
+text = "Add"
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -230.0
+offset_right = 325.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(250, 175)
+theme = ExtResource("3_gmomm")
+
+[node name="UploadCape" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(31, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -38.0
+offset_right = 36.0
+offset_bottom = -5.0
+grow_vertical = 0
+theme = ExtResource("3_gmomm")
+icon = ExtResource("3_e46hy")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(7, 7)
+pivot_offset = Vector2(32, 16)
+texture = ExtResource("2_bwada")
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="Panel/UploadCape" to="." method="_on_upload_cape_pressed"]

@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b1ab176jdsq1e"]
+
+[ext_resource type="StyleBox" uid="uid://cmns6051205yn" path="res://themes/dark_style_box.tres" id="1_j2xe8"]
+[ext_resource type="StyleBox" uid="uid://bfeikd6lmrpdx" path="res://themes/green_style_box.tres" id="2_ki51b"]
+[ext_resource type="StyleBox" uid="uid://cvdr02np5dwep" path="res://themes/window_embedded_border.tres" id="3_bsua0"]
+[ext_resource type="StyleBox" uid="uid://bihgw4jb5fbir" path="res://themes/light_grey_style_box.tres" id="3_mhc03"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_as0wi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_co7uk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptuhb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jj0ni"]
+
+[resource]
+AcceptDialog/styles/panel = ExtResource("1_j2xe8")
+Button/styles/disabled = ExtResource("1_j2xe8")
+Button/styles/focus = SubResource("StyleBoxEmpty_as0wi")
+Button/styles/hover = SubResource("StyleBoxEmpty_co7uk")
+Button/styles/normal = ExtResource("1_j2xe8")
+Button/styles/pressed = ExtResource("2_ki51b")
+Label/styles/normal = ExtResource("1_j2xe8")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_ptuhb")
+Panel/styles/panel = ExtResource("1_j2xe8")
+Tree/colors/font_selected_color = Color(1, 1, 1, 1)
+Tree/styles/focus = SubResource("StyleBoxEmpty_jj0ni")
+VScrollBar/styles/grabber = ExtResource("3_mhc03")
+VScrollBar/styles/grabber_highlight = ExtResource("2_ki51b")
+VScrollBar/styles/grabber_pressed = ExtResource("2_ki51b")
+Window/styles/embedded_border = ExtResource("3_bsua0")

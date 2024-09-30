@@ -1,0 +1,126 @@
+[gd_scene load_steps=4 format=3 uid="uid://25n2ub65gtjo"]
+
+[ext_resource type="Script" path="res://scripts/skin_editor.gd" id="1_mgwfj"]
+[ext_resource type="Texture2D" uid="uid://dfct4svdji18k" path="res://images/icon.svg" id="1_vwpau"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rx1nl"]
+
+[node name="SkinEditor" type="Window" node_paths=PackedStringArray("model_image", "skin_image", "skin_name", "cape_selector", "slim_button") groups=["editor"]]
+title = "Skin Editor"
+initial_position = 2
+size = Vector2i(600, 450)
+unresizable = true
+script = ExtResource("1_mgwfj")
+model_image = NodePath("VBoxContainer/TabContainer/Model Image/Model Image")
+skin_image = NodePath("VBoxContainer/TabContainer/Skin/Skin Image")
+skin_name = NodePath("VBoxContainer/HBoxContainer/NameEdit")
+cape_selector = NodePath("VBoxContainer/HBoxContainer/CapeSelection")
+slim_button = NodePath("VBoxContainer/HBoxContainer/SlimButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Model Image" type="Control" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+
+[node name="Model Image" type="TextureRect" parent="VBoxContainer/TabContainer/Model Image"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("1_vwpau")
+stretch_mode = 5
+
+[node name="UploadModel" type="Button" parent="VBoxContainer/TabContainer/Model Image"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Upload Model Image"
+
+[node name="Skin" type="Control" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Skin Image" type="TextureRect" parent="VBoxContainer/TabContainer/Skin"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("1_vwpau")
+stretch_mode = 5
+
+[node name="3D Model" type="Control" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/TabContainer/3D Model"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/TabContainer/3D Model/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(300, 300)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.866025, -0.25, -0.433013, 0, 0.866025, -0.5, 0.5, 0.433013, 0.75, 0, 0, -2)
+mesh = SubResource("BoxMesh_rx1nl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="VBoxContainer/TabContainer/3D Model/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.866025, -0.25, -0.433013, 0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CapeSelection" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.4
+
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 1.2
+placeholder_text = "<unnamed skin>"
+
+[node name="SlimButton" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "slim"
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Model Image/UploadModel" to="." method="_on_upload_model_pressed"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/CapeSelection" to="." method="_on_cape_selected"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/NameEdit" to="." method="_on_name_changed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/SlimButton" to="." method="_on_slim_toggled"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button"]

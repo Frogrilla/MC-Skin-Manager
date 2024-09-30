@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7yjxtrtxcdey"]
+
+[ext_resource type="Script" path="res://scripts/skin_container.gd" id="1_rwqff"]
+[ext_resource type="Resource" uid="uid://cfskuyueih5vi" path="res://skins/test.tres" id="2_wwjtx"]
+[ext_resource type="Texture2D" uid="uid://dfct4svdji18k" path="res://images/icon.svg" id="3_f4an0"]
+[ext_resource type="Texture2D" uid="uid://o2abjmalvbkj" path="res://images/select.png" id="4_cbn11"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd123"]
+size = Vector2(281, 403)
+
+[node name="SkinContainer" type="Panel"]
+custom_minimum_size = Vector2(300, 454)
+script = ExtResource("1_rwqff")
+data = ExtResource("2_wwjtx")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_top = 5.0
+offset_right = 64.5
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "<unnamed skin>"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 32.0
+offset_right = 144.0
+offset_bottom = 416.0
+grow_horizontal = 2
+texture = ExtResource("3_f4an0")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.5
+offset_top = -36.0
+offset_right = 21.5
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "EDIT"
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(149.5, 210.5)
+shape = SubResource("RectangleShape2D_nd123")
+debug_color = Color(0, 0.584314, 0.792157, 0.419608)
+
+[node name="SelectGraphic" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_cbn11")

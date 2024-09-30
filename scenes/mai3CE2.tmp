@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://ru3yjhkku3jl"]
+
+[ext_resource type="PackedScene" uid="uid://c7yjxtrtxcdey" path="res://scenes/skin_container.tscn" id="1_1ffie"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_oxslj"]
+[ext_resource type="Script" path="res://scripts/mouse.gd" id="2_nu3no"]
+[ext_resource type="Texture2D" uid="uid://bft60nrc6bakk" path="res://images/tesert.png" id="3_dvc7e"]
+[ext_resource type="Texture2D" uid="uid://syrix6ixf4i3" path="res://images/skin.png" id="5_c2nj6"]
+[ext_resource type="Texture2D" uid="uid://c7agtpc0kgac7" path="res://images/skin test.png" id="5_h8y31"]
+[ext_resource type="Script" path="res://scripts/skin_data.gd" id="6_u80lp"]
+
+[sub_resource type="Resource" id="Resource_pmmwg"]
+script = ExtResource("6_u80lp")
+name = "foofoo"
+model_image = ExtResource("3_dvc7e")
+slim = true
+cape_id = ""
+created = 0
+texture_id = ""
+
+[sub_resource type="Resource" id="Resource_g3h82"]
+script = ExtResource("6_u80lp")
+name = "fefe"
+model_image = ExtResource("5_h8y31")
+slim = true
+cape_id = ""
+created = 0
+texture_id = ""
+
+[sub_resource type="Resource" id="Resource_e2e5s"]
+script = ExtResource("6_u80lp")
+name = "grom"
+model_image = ExtResource("5_c2nj6")
+slim = true
+cape_id = ""
+created = 0
+texture_id = ""
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2bxo8"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oxslj")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+
+[node name="SkinContainer" parent="ScrollContainer/HFlowContainer" instance=ExtResource("1_1ffie")]
+layout_mode = 2
+data = SubResource("Resource_pmmwg")
+
+[node name="SkinContainer2" parent="ScrollContainer/HFlowContainer" instance=ExtResource("1_1ffie")]
+layout_mode = 2
+data = SubResource("Resource_g3h82")
+
+[node name="SkinContainer3" parent="ScrollContainer/HFlowContainer" instance=ExtResource("1_1ffie")]
+layout_mode = 2
+data = SubResource("Resource_e2e5s")
+
+[node name="Mouse" type="Node2D" parent="."]
+script = ExtResource("2_nu3no")
+
+[node name="Area2D" type="Area2D" parent="Mouse"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse/Area2D"]
+shape = SubResource("CircleShape2D_2bxo8")
+debug_color = Color(1, 1, 1, 0.419608)
